@@ -3,7 +3,11 @@ import "./App.css";
 function App() {
 	return (
 		<div className="App">
-			<div className="board">{/* TO DO */}</div>
+			<div className="board">
+				<div className="row"></div>
+				<div className="row"></div>
+				<div className="row"></div>
+			</div>
 		</div>
 	);
 }
