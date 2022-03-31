@@ -10,6 +10,7 @@ function App() {
 
 	useEffect(() => {
 		checkWin();
+		checkTie();
 
 		if (player == "X") setPlayer("O");
 		else setPlayer("X");
@@ -46,9 +47,18 @@ function App() {
 			});
 
 			if (foundWinningPattern) {
-				setResult({ winner: player, state: "won" });
+				setResult({ winner: player, state: "Won" });
 			}
 		});
+	};
+
+	const checkTie = () => {
+		let filled = true;
+		board.forEach((square) => {
+			if (square == "") filled = false;
+		});
+
+		if (filled) setResult({ winner: "No one", state: "Tie" });
 	};
 
 	return (
