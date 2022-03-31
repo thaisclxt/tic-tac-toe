@@ -19,15 +19,14 @@ function App() {
 	useEffect(() => {
 		if (result.state != "none") {
 			alert(`Game finished! Winning Player: ${result.winner}`);
+			restartGame();
 		}
 	}, [result]);
 
 	const chooseSquare = (square) => {
 		setBoard(
 			board.map((val, idx) => {
-				if (idx == square && val == "") {
-					return player;
-				}
+				if (idx == square && val == "") return player;
 				return val;
 			})
 		);
@@ -59,6 +58,11 @@ function App() {
 		});
 
 		if (filled) setResult({ winner: "No one", state: "Tie" });
+	};
+
+	const restartGame = () => {
+		setBoard(["", "", "", "", "", "", "", "", ""]);
+		setPlayer("O");
 	};
 
 	return (
