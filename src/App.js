@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Square from "./components/Square";
 import { Patterns } from "./Patterns";
 
@@ -7,6 +7,16 @@ function App() {
 	const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
 	const [player, setPlayer] = useState(["X"]);
 	const [result, setResult] = useState({ winner: "none", state: "none" });
+
+	useEffect(() => {
+		checkWin();
+	}, [board]);
+
+	useEffect(() => {
+		if (result.state != "none") {
+			alert(`Game finished! Winning Player: ${result.winner}`);
+		}
+	}, [result]);
 
 	const chooseSquare = (square) => {
 		setBoard(
@@ -22,7 +32,7 @@ function App() {
 		else setPlayer("X");
 	};
 
-	const chckWin = () => {
+	const checkWin = () => {
 		Patterns.forEach((currentPattern) => {
 			const firsPlayer = board[currentPattern[0]];
 			if (firsPlayer == "") return;
